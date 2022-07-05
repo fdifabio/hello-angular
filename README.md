@@ -36,7 +36,11 @@ docker build -t hello-angular . -f ./docker/Dockerfile
 ```
 
 ## 2 - Run
-
+Linux
+```shell 
+docker run --rm -it -u $(id -u ${USER}):$(id -g ${USER}) --name hello-angular -v ${PWD}:/app -p 4200:4200 hello-angular
+```
+Windows
 ```shell 
 docker run --rm -it --name hello-angular -v ${PWD}:/app -p 4200:4200 hello-angular
 ```

@@ -5,10 +5,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-person-list',
-  templateUrl: './person-list.component.html',
-  styleUrls: ['./person-list.component.css']
+  templateUrl: './persons-list.component.html',
+  styleUrls: ['./persons-list.component.css']
 })
-export class PersonListComponent implements OnInit {
+export class PersonsListComponent implements OnInit {
   persons: Person[] = [];
   personSelected: Person | undefined = undefined;
 
@@ -21,9 +21,7 @@ export class PersonListComponent implements OnInit {
     })
   }
 
-
-
-  selectPerson(p: Person) {
-    this.personSelected = p;
+  goToDetail(p: Person) {
+    this.router.navigate(['detail', p.id])
   }
 }

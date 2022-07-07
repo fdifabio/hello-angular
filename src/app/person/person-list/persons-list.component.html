@@ -1,0 +1,11 @@
+<div style="text-align: center">
+  <p>Mostrando el listado de personas</p>
+  <div *ngFor="let person of persons" [class.selected]="person === personSelected">
+    <p style="display: flex; justify-content: space-evenly">
+      <span>{{person.showName()}}</span>
+      <span> Edad {{person.age}}</span>
+      <button (click)="goToDetail(person)">Modificar</button>
+    </p>
+  </div>
+
+</div>

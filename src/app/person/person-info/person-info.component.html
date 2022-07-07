@@ -1,0 +1,16 @@
+<div *ngIf="person" style="text-align: center">
+
+  <p>Editar la informacion de una persona</p>
+
+  <label>Nombre</label>
+  <input type="text" [(ngModel)]="person.name">
+  <br>
+
+  <label>Apellido</label>
+  <input type="text" [(ngModel)]="person.lastName">
+  <br>
+
+  <label>Edad</label>
+  <input type="number" [(ngModel)]="person.age">
+  <br>
+</div>

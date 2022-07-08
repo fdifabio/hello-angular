@@ -11,8 +11,8 @@ import {PersonsAdministrationModule} from "./persons-administration/persons-admi
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    PersonsAdministrationModule
+    PersonsAdministrationModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

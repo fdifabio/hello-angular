@@ -15,4 +15,8 @@ export class PersonDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  showName(): string{
+    return this.person!.showName()
+  }
 }

@@ -10,7 +10,7 @@ export class PersonService {
   constructor() { }
 
   findAll(): Observable<Person[]> {
-    return of(personList)
+    return of(personList);
   }
 
   findOne(id: string): Observable<Person | null> {

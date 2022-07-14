@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PersonRoutingModule } from './person-routing.module';
 import {PersonsListComponent} from "./person-list/persons-list.component";
 import {PersonInfoComponent} from "./person-info/person-info.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -12,7 +12,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     PersonRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PersonModule { }

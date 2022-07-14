@@ -16,7 +16,7 @@ export class PersonListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.personService.findAll().subscribe(list => {
+    this.personService.findAllSimple().subscribe(list => {
       this.persons = list
     })
   }

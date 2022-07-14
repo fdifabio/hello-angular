@@ -1,19 +1,19 @@
 export class Person {
   id: number;
-  name: string;
+  firstName: string;
   lastName:string;
   age: number;
 
 
   constructor(id: number, name: string, lastName: string, age: number) {
     this.id = id;
-    this.name = name;
+    this.firstName = name;
     this.lastName = lastName;
     this.age = age;
   }
 
   showName(): string{
-    return this.name + " " + this.lastName;
+    return this.firstName + " " + this.lastName;
   }
 
   isAdult(): boolean {

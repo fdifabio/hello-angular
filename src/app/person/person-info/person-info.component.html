@@ -2,15 +2,50 @@
 
   <p>Editar la informacion de una persona</p>
 
-  <label>Nombre</label>
-  <input type="text" [(ngModel)]="person.name">
-  <br>
+  <form [formGroup]="personForm" (ngSubmit)="saveData()" style="display: flex; flex-direction: column">
+    <label>
+      Nombre
+      <input type="text" formControlName="name">
 
-  <label>Apellido</label>
-  <input type="text" [(ngModel)]="person.lastName">
-  <br>
+      <div *ngIf="personForm.controls.name.invalid && (personForm.controls.name.dirty || personForm.controls.name.touched)"
+           style="color: red">
+        <span *ngIf="personForm.controls.name.errors?.required">
+          Este campo es requerido
+        </span>
+      </div>
+    </label>
+    <br>
 
-  <label>Edad</label>
-  <input type="number" [(ngModel)]="person.age">
-  <br>
+    <label>
+      Apellido
+      <input type="text" formControlName="lastName">
+
+      <div *ngIf="personForm.controls.lastName.invalid && (personForm.controls.lastName.dirty || personForm.controls.lastName.touched)"
+           style="color: red">
+        <span *ngIf="personForm.controls.lastName.errors?.required">
+          Este campo es requerido
+        </span>
+      </div>
+    </label>
+
+    <br>
+    <label>
+      Edad
+      <input type="number" formControlName="age">
+
+      <div *ngIf="personForm.controls.age.invalid && (personForm.controls.age.dirty || personForm.controls.age.touched)"
+           style="color: red">
+        <span *ngIf="personForm.controls.age.errors?.required">
+          Este campo es requerido
+        </span>
+
+        <span *ngIf="personForm.controls.age.errors?.max">
+          El numero ingresado supera el maximo
+        </span>
+      </div>
+    </label>
+
+    <br>
+    <button type="submit" [disabled]="personForm.invalid" style="width: 220px; margin: auto;">Guardar</button>
+  </form>
 </div>

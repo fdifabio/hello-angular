@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  backUrl: 'http://tesis.lia.unrn.edu.ar:3000/'
 };

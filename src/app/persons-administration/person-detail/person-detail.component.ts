@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Person} from "../../model/person";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-person-detail',
@@ -10,9 +11,12 @@ export class PersonDetailComponent implements OnInit {
 
   @Input() person: Person | undefined;
 
+  nameControl: FormControl = new FormControl('', Validators.required)
+
   constructor() {
   }
 
   ngOnInit(): void {
+
   }
 }

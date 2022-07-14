@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {RouterModule} from "@angular/router";
 import {PersonsAdministrationModule} from "./persons-administration/persons-administration.module";
 import {PersonModule} from "./person/person.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {PersonModule} from "./person/person.module";
     RouterModule,
     PersonModule,
     PersonsAdministrationModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

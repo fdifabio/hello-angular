@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Person} from "../../model/person";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PersonService} from "../../services/person.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-person-detail',
@@ -10,9 +11,16 @@ import {PersonService} from "../../services/person.service";
 })
 export class PersonInfoComponent implements OnInit {
 
-  @Input() person: Person | undefined;
+  person: Person | undefined;
 
-  constructor(private route: ActivatedRoute,
+  personForm: FormGroup = this.formBuilder.group({
+    name: ['', Validators.required],
+    lastName: ['', Validators.required],
+    age: ['', [Validators.required, Validators.max(100)]]
+  })
+
+  constructor(private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
               private router: Router,
               private personService: PersonService) {
   }
@@ -25,11 +33,28 @@ export class PersonInfoComponent implements OnInit {
 
       else {
         console.log('El Id es: ' + id)
-        this.personService.findOne(id).subscribe(res => {
-          if (res)
-            this.person = res;
-        })
+        this.loadPerson(id);
       }
     })
+  }
+
+  loadPerson(id: string) {
+    this.personService.findOne(id).subscribe(res => {
+      if (res) {
+        this.person = res;
+        this.personForm.patchValue({
+          name: this.person.firstName,
+          lastName: this.person.lastName,
+          age: this.person.age
+        })
+      }
+    },
+    error => {
+      console.log('Error' + error);
+    })
+  }
+
+  saveData() {
+
   }
 }

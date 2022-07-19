@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  backUrl: 'http://tesis.lia.unrn.edu.ar:3000/'
+  backUrl: 'http://tesis.lia.unrn.edu.ar:3000/',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZkaWZhYmlvQHVucm4uZWR1LmFyIiwic3ViIjoyNCwiaWF0IjoxNjU3NzYyNDY2LCJleHAiOjE2NTc3NjMzNjZ9.az6HIrCGLsQyxFtC05ruSZEJmwebWXGV9AfT9bxsjkI'
 };
 
 /*

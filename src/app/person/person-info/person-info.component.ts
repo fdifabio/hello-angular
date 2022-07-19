@@ -11,10 +11,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class PersonInfoComponent implements OnInit {
 
-  person: Person | undefined;
-
   personForm: FormGroup = this.formBuilder.group({
-    name: ['', Validators.required],
+    id: ['', []],
+    firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     age: ['', [Validators.required, Validators.max(100)]]
   })
@@ -29,7 +28,7 @@ export class PersonInfoComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (!id)
-        this.router.navigate(['list']);
+        this.buildForm();
 
       else {
         console.log('El Id es: ' + id)
@@ -38,23 +37,51 @@ export class PersonInfoComponent implements OnInit {
     })
   }
 
+  buildForm(p?: Person) {
+    if (p) {
+      this.personForm.patchValue({
+        id: p.id,
+        firstName: p.firstName,
+        lastName: p.lastName,
+        age: p.age
+      })
+    }
+  }
+
   loadPerson(id: string) {
-    this.personService.findOne(id).subscribe(res => {
-      if (res) {
-        this.person = res;
-        this.personForm.patchValue({
-          name: this.person.firstName,
-          lastName: this.person.lastName,
-          age: this.person.age
-        })
-      }
-    },
-    error => {
-      console.log('Error' + error);
-    })
+    this.personService.findOne(id).subscribe({
+      next: (p) => this.buildForm(p),
+      error: (err) => alert(err)
+    });
   }
 
   saveData() {
+    let p = new Person(
+      this.personForm.get("id")?.value,
+      this.personForm.get("firstName")?.value,
+      this.personForm.get("lastName")?.value,
+      this.personForm.get("age")?.value,
+    )
+    if (!p.id) {
+        this.personService.create(p).subscribe({
+          next: () => {
+            alert("Persona creada con exito")
+            this.goBack()
+          },
+          error: (err) => alert(err)
+        })
+    } else {
+      this.personService.update(p).subscribe({
+        next: () => {
+          alert("Persona actualizada con exito")
+          this.goBack()
+        },
+        error: (err) => alert(err)
+      })
+    }
+  }
 
+  goBack() {
+    this.router.navigate(['']);
   }
 }

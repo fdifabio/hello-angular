@@ -10,14 +10,39 @@ import {environment} from "../../environments/environment";
 export class PersonService {
 
   resourceUrl = environment.backUrl + 'persons'
-
+  authHeader = {
+    Authorization: environment.token
+  }
   constructor(private http: HttpClient) { }
 
+
+  create(p: Person): Observable<any>{
+    return this.http.post<any>(this.resourceUrl, p, {headers: this.authHeader}).pipe(
+      catchError(err => {
+        console.log("Ocurrio un error", err)
+        return throwError(() => 'Ocurrio un error al crear una persona')
+      })
+    )
+  }
+  update(p: Person): Observable<any>{
+    return this.http.put<any>(this.resourceUrl, p, {headers: this.authHeader}).pipe(
+      catchError(err => {
+        console.log("Ocurrio un error", err)
+        return throwError(() => 'Ocurrio un error al actualizar una persona')
+      })
+    )
+  }
+
+  delete(id: number): Observable<any>{
+    return this.http.delete<any>(this.resourceUrl + "/" + id, {headers: this.authHeader}).pipe(
+      catchError(err => {
+        console.log("Ocurrio un error", err)
+        return throwError(() => 'Ocurrio un error al eliminar una persona')
+      })
+    )
+  }
   findAll(): Observable<Person[]> {
-    const authHeader = {
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZkaWZhYmlvQHVucm4uZWR1LmFyIiwic3ViIjoyNCwiaWF0IjoxNjU3NzYyNDY2LCJleHAiOjE2NTc3NjMzNjZ9.az6HIrCGLsQyxFtC05ruSZEJmwebWXGV9AfT9bxsjkI'
-    }
-    return this.http.get<Person[]>(this.resourceUrl, {headers: authHeader}).pipe(
+    return this.http.get<Person[]>(this.resourceUrl, {headers: this.authHeader}).pipe(
       catchError( err => {
         console.log('Ocurrio un error', err)
         return throwError(() => 'Ocurrio un error');
@@ -25,11 +50,8 @@ export class PersonService {
       map(jsonList => jsonList.map(value => new Person(value.id, value.firstName, value.lastName, value.age))));
   }
 
-  findOne(id: string): Observable<Person | null> {
-    const authHeader = {
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZkaWZhYmlvQHVucm4uZWR1LmFyIiwic3ViIjoyNCwiaWF0IjoxNjU3NzYyNDY2LCJleHAiOjE2NTc3NjMzNjZ9.az6HIrCGLsQyxFtC05ruSZEJmwebWXGV9AfT9bxsjkI'
-    }
-    return this.http.get<Person>(this.resourceUrl + '/' + id, {headers: authHeader}).pipe(
+  findOne(id: string): Observable<Person> {
+    return this.http.get<Person>(this.resourceUrl + '/' + id, {headers: this.authHeader}).pipe(
       catchError( err => {
         console.log('Ocurrio un error', err)
         return throwError(() =>'La Persona no existe');

@@ -8,26 +8,14 @@
     <label>
       Nombre
       <input type="text" formControlName="firstName">
-
-      <div *ngIf="personForm.controls.firstName.invalid && (personForm.controls.firstName.dirty || personForm.controls.firstName.touched)"
-           style="color: red">
-        <span *ngIf="personForm.controls.firstName.errors?.required">
-          Este campo es requerido
-        </span>
-      </div>
+      <app-form-error [control]="personForm.controls.firstName"></app-form-error>
     </label>
     <br>
 
     <label>
       Apellido
       <input type="text" formControlName="lastName">
-
-      <div *ngIf="personForm.controls.lastName.invalid && (personForm.controls.lastName.dirty || personForm.controls.lastName.touched)"
-           style="color: red">
-        <span *ngIf="personForm.controls.lastName.errors?.required">
-          Este campo es requerido
-        </span>
-      </div>
+      <app-form-error [control]="personForm.controls.lastName"></app-form-error>
     </label>
 
     <br>
@@ -35,21 +23,12 @@
       Edad
       <input type="number" formControlName="age">
 
-      <div *ngIf="personForm.controls.age.invalid && (personForm.controls.age.dirty || personForm.controls.age.touched)"
-           style="color: red">
-        <span *ngIf="personForm.controls.age.errors?.required">
-          Este campo es requerido
-        </span>
-
-        <span *ngIf="personForm.controls.age.errors?.max">
-          El numero ingresado supera el maximo
-        </span>
-      </div>
+      <app-form-error [control]="personForm.controls.age"></app-form-error>
     </label>
 
     <br>
 
-    <button (click)="goBack()"  style="width: 220px; margin: auto;">Volver</button>
+    <button (click)="goBack()" style="width: 220px; margin: auto;">Volver</button>
     <button type="submit" [disabled]="personForm.invalid" style="width: 220px; margin: auto;">Guardar</button>
   </form>
 </div>

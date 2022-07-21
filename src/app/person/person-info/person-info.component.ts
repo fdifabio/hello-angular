@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Person} from "../../model/person";
 import {ActivatedRoute, Router} from "@angular/router";
-import {PersonService} from "../../services/person.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PersonGenericService} from "../../services/person-generic.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-person-detail',
   templateUrl: './person-info.component.html',
   styleUrls: ['./person-info.component.css']
 })
-export class PersonInfoComponent implements OnInit {
+export class PersonInfoComponent implements OnInit, OnDestroy {
 
   personForm: FormGroup = this.formBuilder.group({
     id: ['', []],
@@ -17,11 +18,12 @@ export class PersonInfoComponent implements OnInit {
     lastName: ['', Validators.required],
     age: ['', [Validators.required, Validators.max(100)]]
   })
+  sub: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private personService: PersonService) {
+              private personService: PersonGenericService) {
   }
 
   ngOnInit(): void {
@@ -37,6 +39,10 @@ export class PersonInfoComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.sub.forEach(s => s.unsubscribe())
+  }
+
   buildForm(p?: Person) {
     if (p) {
       this.personForm.patchValue({
@@ -49,10 +55,13 @@ export class PersonInfoComponent implements OnInit {
   }
 
   loadPerson(id: string) {
-    this.personService.findOne(id).subscribe({
-      next: (p) => this.buildForm(p),
+    this.sub.push(this.personService.findOne(id).subscribe({
+      next: (p) => {
+        let person = new Person(p.id, p.firstName, p.lastName, p.age);
+        this.buildForm(person)
+      },
       error: (err) => alert(err)
-    });
+    }));
   }
 
   saveData() {
@@ -63,13 +72,13 @@ export class PersonInfoComponent implements OnInit {
       this.personForm.get("age")?.value,
     )
     if (!p.id) {
-        this.personService.create(p).subscribe({
-          next: () => {
-            alert("Persona creada con exito")
-            this.goBack()
-          },
-          error: (err) => alert(err)
-        })
+      this.personService.create(p).subscribe({
+        next: () => {
+          alert("Persona creada con exito")
+          this.goBack()
+        },
+        error: (err) => alert(err)
+      })
     } else {
       this.personService.update(p).subscribe({
         next: () => {

@@ -6,6 +6,9 @@ import {PersonsListComponent} from "./person-list/persons-list.component";
 import {PersonInfoComponent} from "./person-info/person-info.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormErrorModule} from "../form-error/form-error.module";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTableModule} from "@angular/material/table";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import {FormErrorModule} from "../form-error/form-error.module";
     PersonRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FormErrorModule
+    FormErrorModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatDialogModule
   ]
 })
 export class PersonModule { }

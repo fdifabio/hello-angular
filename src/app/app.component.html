@@ -1,19 +1,2 @@
-<app-topbar (clicked)="menuOpen = $event"></app-topbar>
+<router-outlet></router-outlet>
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer [opened]="menuOpen" class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <div style="text-align: center">
-      <h1> Bienvenido {{title}}</h1>
-    </div>
-    <div>
-      <!--  <app-person-list></app-person-list>-->
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-
-</mat-drawer-container>

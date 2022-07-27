@@ -8,7 +8,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class TopbarComponent implements OnInit {
 
   @Output()
-  clicked: EventEmitter<boolean> = new EventEmitter();
+  openSideEmitter: EventEmitter<boolean> = new EventEmitter();
 
   open = false;
 
@@ -19,7 +19,7 @@ export class TopbarComponent implements OnInit {
 
   clickButton() {
     this.open = !this.open;
-    this.clicked.emit(this.open);
+    this.openSideEmitter.emit(this.open);
   }
 
 }

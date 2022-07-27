@@ -11,32 +11,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationComponent } from './shared/confirmation/confirmation.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
-import { TopbarComponent } from './shared/topbar/topbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { TopbarComponent } from './shared/admin-layout/components/topbar/topbar.component';
+import { SidebarComponent } from './shared/admin-layout/components/sidebar/sidebar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {AdminLayoutModule} from "./shared/admin-layout/admin-layout.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationComponent,
-    TopbarComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AdminLayoutModule,
     RouterModule,
     PersonModule,
-    PersonsAdministrationModule,
     HttpClientModule,
     MatButtonModule,
     MatDialogModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
     BrowserAnimationsModule
   ],
   providers: [],

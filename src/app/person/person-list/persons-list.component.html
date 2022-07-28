@@ -5,9 +5,14 @@
 <div *ngIf="!loading" style="text-align: center">
   <p>Mostrando el listado de personas</p>
 
+
+  <mat-form-field appearance="standard" style="width: 50%">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+  </mat-form-field>
   <button (click)="goToDetail()">Crear</button>
 
-  <table mat-table [dataSource]="persons" class="mat-elevation-z8" style="width: 100%">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Person} from "../../model/person";
+import {Person} from "../../../model/person";
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({

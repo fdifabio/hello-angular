@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Person} from "../../model/person";
+import {Person} from "../../../model/person";
 import {Router} from "@angular/router";
-import {PersonGenericService} from "../../services/person-generic.service";
+import {PersonGenericService} from "../../../services/person-generic.service";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmationComponent} from "../../shared/confirmation/confirmation.component";
+import {ConfirmationComponent} from "../../../shared/confirmation/confirmation.component";
 import {MatTableDataSource} from "@angular/material/table";
 
 @Component({

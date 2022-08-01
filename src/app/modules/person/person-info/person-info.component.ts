@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Person} from "../../model/person";
+import {Person} from "../../../model/person";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {PersonGenericService} from "../../services/person-generic.service";
+import {PersonGenericService} from "../../../services/person-generic.service";
 import {Subscription} from "rxjs";
 
 @Component({

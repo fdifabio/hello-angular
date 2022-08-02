@@ -1,0 +1,17 @@
+.simple-button {
+  width: 220px;
+  margin: auto;
+  margin-top: 10px
+}
+
+.progress {
+  position: absolute; right: 45%; z-index: 10; top: 28%;
+}
+
+.container {
+  width: 300px; margin: auto; margin-top: 20%; text-align: center;
+}
+
+.loading {
+  opacity: 0.5;
+}

@@ -10,14 +10,12 @@ import {environment} from "../../environments/environment";
 export class PersonService {
 
   resourceUrl = environment.backUrl + 'persons'
-  authHeader = {
-    Authorization: environment.token
-  }
+
   constructor(private http: HttpClient) { }
 
 
   create(p: Person): Observable<any>{
-    return this.http.post<any>(this.resourceUrl, p, {headers: this.authHeader}).pipe(
+    return this.http.post<any>(this.resourceUrl, p).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al crear una persona')
@@ -25,7 +23,7 @@ export class PersonService {
     )
   }
   update(p: Person): Observable<any>{
-    return this.http.put<any>(this.resourceUrl, p, {headers: this.authHeader}).pipe(
+    return this.http.put<any>(this.resourceUrl, p).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al actualizar una persona')
@@ -34,7 +32,7 @@ export class PersonService {
   }
 
   delete(id: number): Observable<any>{
-    return this.http.delete<any>(this.resourceUrl + "/" + id, {headers: this.authHeader}).pipe(
+    return this.http.delete<any>(this.resourceUrl + "/" + id).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al eliminar una persona')
@@ -42,7 +40,7 @@ export class PersonService {
     )
   }
   findAll(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.resourceUrl, {headers: this.authHeader}).pipe(
+    return this.http.get<Person[]>(this.resourceUrl).pipe(
       catchError( err => {
         console.log('Ocurrio un error', err)
         return throwError(() => 'Ocurrio un error');
@@ -51,7 +49,7 @@ export class PersonService {
   }
 
   findOne(id: string): Observable<Person> {
-    return this.http.get<Person>(this.resourceUrl + '/' + id, {headers: this.authHeader}).pipe(
+    return this.http.get<Person>(this.resourceUrl + '/' + id).pipe(
       catchError( err => {
         console.log('Ocurrio un error', err)
         return throwError(() =>'La Persona no existe');

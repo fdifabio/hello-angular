@@ -4,6 +4,7 @@ import {PersonsListComponent} from "./person-list/persons-list.component";
 import {PersonInfoComponent} from "./person-info/person-info.component";
 
 const routes: Routes = [
+
   {path: 'list', component: PersonsListComponent},
   {path: 'detail/:id', component: PersonInfoComponent},
   {path: '', redirectTo: 'list', pathMatch: 'full'},

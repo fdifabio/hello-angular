@@ -7,9 +7,6 @@ export abstract class AbstractService {
 
   public resourceUrl: string;
   public entity: string;
-  authHeader = {
-    Authorization: environment.token
-  }
 
   protected constructor(protected http: HttpClient,
                         private basePath: string,
@@ -19,7 +16,7 @@ export abstract class AbstractService {
   }
 
   create(entity: any): Observable<any> {
-    return this.http.post<any>(this.resourceUrl, entity, {headers: this.authHeader}).pipe(
+    return this.http.post<any>(this.resourceUrl, entity).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al crear ' + this.entity)
@@ -28,7 +25,7 @@ export abstract class AbstractService {
   }
 
   update(entity: any): Observable<any> {
-    return this.http.put<any>(this.resourceUrl, entity, {headers: this.authHeader}).pipe(
+    return this.http.put<any>(this.resourceUrl, entity).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al actualizar ' + this.entity)
@@ -37,7 +34,7 @@ export abstract class AbstractService {
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete<any>(this.resourceUrl + "/" + id, {headers: this.authHeader}).pipe(
+    return this.http.delete<any>(this.resourceUrl + "/" + id).pipe(
       catchError(err => {
         console.log("Ocurrio un error", err)
         return throwError(() => 'Ocurrio un error al eliminar ' + this.entity)
@@ -46,7 +43,7 @@ export abstract class AbstractService {
   }
 
   findAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.resourceUrl, {headers: this.authHeader}).pipe(
+    return this.http.get<any[]>(this.resourceUrl).pipe(
       catchError(err => {
         console.log('Ocurrio un error', err)
         return throwError(() => 'Ocurrio un error');
@@ -55,7 +52,7 @@ export abstract class AbstractService {
   }
 
   findOne(id: string): Observable<any> {
-    return this.http.get<any>(this.resourceUrl + '/' + id, {headers: this.authHeader}).pipe(
+    return this.http.get<any>(this.resourceUrl + '/' + id).pipe(
       catchError(err => {
         console.log('Ocurrio un error', err)
         return throwError(() => this.entity + ' no existe');

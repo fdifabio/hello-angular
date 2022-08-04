@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../services/security/authentication.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthenticationService) { }
+              private authService: AuthenticationService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn())
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
       if (res)
         this.router.navigate(['']);
     }, error => {
+      this.snackBar.open("Error", error)
       this.loading = false;
     })
   }

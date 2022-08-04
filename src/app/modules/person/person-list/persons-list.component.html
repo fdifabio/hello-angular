@@ -39,8 +39,14 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef> Opciones </th>
       <td mat-cell *matCellDef="let person">
-        <button (click)="goToDetail(person)">Modificar</button>
-        <button (click)="delete(person)">Eliminar</button>
+        <button mat-mini-fab color="primary"
+        (click)="goToDetail(person)" matTooltip="Modificar">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent"
+                (click)="delete(person)" matTooltip="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </button>
       </td>
     </ng-container>
 

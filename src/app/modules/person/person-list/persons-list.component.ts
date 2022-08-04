@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationComponent} from "../../../shared/confirmation/confirmation.component";
 import {MatTableDataSource} from "@angular/material/table";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-person-list',
@@ -23,7 +24,8 @@ export class PersonsListComponent implements OnInit, OnDestroy {
 
   constructor(private personService: PersonGenericService,
               private router: Router,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 
   applyFilter(event: Event) {
@@ -71,10 +73,10 @@ export class PersonsListComponent implements OnInit, OnDestroy {
       if (res) {
         this.sub.push(this.personService.delete(p.id).subscribe({
           next: () => {
-            alert("Persona eliminada con exito")
+            this.snackBar.open("Persona eliminada con exito")
             this.findAll()
           },
-          error: (err) => alert(err),
+          error: (err) => this.snackBar.open(err),
         }));
       }
     })

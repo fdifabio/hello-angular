@@ -12,6 +12,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MaterialModule} from "../material/material.module";
 
 
 @NgModule({
@@ -22,12 +23,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
     FormsModule,
     ReactiveFormsModule,
     FormErrorModule,
-    MatProgressSpinnerModule,
-    MatTableModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatGridListModule
+    MaterialModule
   ]
 })
 export class PersonModule { }

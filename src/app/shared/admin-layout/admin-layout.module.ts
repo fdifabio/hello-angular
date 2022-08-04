@@ -9,6 +9,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterModule} from "@angular/router";
 import {MatListModule} from '@angular/material/list';
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MaterialModule} from "../../modules/material/material.module";
 
 
 
@@ -21,11 +23,7 @@ import {MatListModule} from '@angular/material/list';
   imports: [
     CommonModule,
     RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    MaterialModule
   ]
 })
 export class AdminLayoutModule { }

@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthenticationService} from "../../../../services/security/authentication.service";
 
 @Component({
   selector: 'app-topbar',
@@ -7,12 +8,16 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
+  title = 'Curso de Angular';
   @Output()
   openSideEmitter: EventEmitter<boolean> = new EventEmitter();
 
   open = false;
+  authenticationService: AuthenticationService;
 
-  constructor() { }
+  constructor(authenticationService: AuthenticationService) {
+    this.authenticationService = authenticationService;
+  }
 
   ngOnInit(): void {
   }
@@ -22,4 +27,7 @@ export class TopbarComponent implements OnInit {
     this.openSideEmitter.emit(this.open);
   }
 
+  logOut(){
+    this.authenticationService.logout();
+  }
 }

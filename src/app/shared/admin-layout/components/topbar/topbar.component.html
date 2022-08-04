@@ -4,6 +4,7 @@
   </button>
   <span>{{title}}</span>
   <div *ngIf="authenticationService.isLoggedIn()" style="align-items: center;display: flex;">
+    <span>{{(authenticationService.loggedIn | async)?.username}}</span>
     <button mat-icon-button (click)="logOut()" matTooltip="Cerrar sesión">
       <mat-icon>logout</mat-icon>
     </button>

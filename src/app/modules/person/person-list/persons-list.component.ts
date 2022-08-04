@@ -62,9 +62,9 @@ export class PersonsListComponent implements OnInit, OnDestroy {
 
   goToDetail(p?: Person) {
     if (p)
-      this.router.navigate(['detail', p.id])
+      this.router.navigate(['person','detail', p.id])
     else
-      this.router.navigate(['detail', ''])
+      this.router.navigate(['person','detail', ''])
   }
 
   delete(p: Person) {

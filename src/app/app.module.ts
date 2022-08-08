@@ -13,6 +13,7 @@ import {AdminLayoutModule} from "./shared/admin-layout/admin-layout.module";
 import {PersonModule} from "./modules/person/person.module";
 import {LoginModule} from "./modules/login/login.module";
 import {TokenInterceptor} from "./security/interceptor/token.interceptor";
+import {ErrorCatchingInterceptor} from "./security/interceptor/error-catching.interceptor";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import {TokenInterceptor} from "./security/interceptor/token.interceptor";
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorCatchingInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
